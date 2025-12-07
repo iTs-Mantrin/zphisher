@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Run script with TERM variable
-      env:
-        TERM: xterm
-    run: bash ./your_script.sh
+    - name: Run automation script
+      run: |
+        chmod +x your_script.sh safe_program.sh
+        bash your_script.sh
