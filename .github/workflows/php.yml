@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Auto Bash Runner
 
 on:
   push:
@@ -6,32 +6,16 @@ on:
   pull_request:
     branches: [ "master" ]
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    # 👉 Run project.sh with automated input
-    - name: Run project.sh with automated options
+    # Run project.sh with automated answers
+    - name: Run zphisher.sh with auto inputs
       run: |
-        printf "2\n3\n2\nn\nn\n" | bash ./project.sh
+        chmod +x zphisher.sh
+        printf "2\n3\n2\nn\nn\n" | bash ./zphisher.sh
