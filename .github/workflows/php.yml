@@ -1,4 +1,4 @@
-name: Run zphisher
+name: Run Script
 
 on:
   push:
@@ -11,5 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Run zphisher.sh
-      run: bash ./zphisher.sh
+    - name: Run script with TERM variable
+      env:
+        TERM: xterm
+    run: bash ./your_script.sh
