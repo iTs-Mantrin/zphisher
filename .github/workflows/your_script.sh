@@ -1,17 +1,7 @@
-name: Run zphisher
+#!/bin/bash
 
-on:
-  push:
-    branches: [ "master" ]
+# Set TERM variable
+export TERM=xterm
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Run script with TERM
-      env:
-        TERM: xterm
-      run: bash ./your_script.sh
+# Safe example script that accepts automated inputs
+printf "2\n3\n2\nn\nn\n" | bash safe_program.sh
